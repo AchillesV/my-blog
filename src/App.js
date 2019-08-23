@@ -2,9 +2,10 @@ import React from 'react';
 import './App.css';
 import {Provider} from 'react-redux'
 import { Menu, Icon, Layout } from 'antd';
-import store from './Store'
+import store from './Store';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import routes from './Router'
+import routes from './Router';
+
 
 const { Content, Footer } = Layout;
 
