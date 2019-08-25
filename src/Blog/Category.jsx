@@ -1,8 +1,10 @@
 import React from 'react';
-import { Layout, Icon } from 'antd';
+import { Icon } from 'antd';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 
-const { Content } = Layout;
+
+
 
 class Category extends React.Component {
   render() {
@@ -15,7 +17,10 @@ class Category extends React.Component {
           <div style={{textAlign: 'left', marginLeft: '30px'}}>
             <ul>
               {
-                categories.map((item,key) => <li key={key}><a href='/#'>{item.category}（{item.count}）</a></li>)
+                categories.map((item,key) => {
+                const url = './detail/' + item.category;
+                return  <li key={key}><Link to={url}>{item.category}（{item.count}）</Link></li>
+                })
               }
             </ul>
 

@@ -1,7 +1,7 @@
 import React from 'react';
-import { Layout, Icon } from 'antd';
+import { Icon } from 'antd';
 import { connect } from 'react-redux';
-const { Content } = Layout;
+
 
 class Tag extends React.Component {
   render() {

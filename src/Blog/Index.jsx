@@ -21,12 +21,13 @@ class Index extends React.Component {
     return(
       <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
         {articles.map((article,key) => {
+          const url = './post/' + article.id;
           return (
             <div key={key}>
-              <h3><Link to='./post'>{article.title}</Link></h3>
+              <h3><Link to={url}>{article.title}</Link></h3>
               <p style={{fontWeight: "lighter"}}>发表于 {article.time} 分类于 {article.category}</p>
               <p style={{ textAlign: 'left' }}>{article.content.length > 50 ? `${article.content.substring(0,150)}...` : article.content}</p>
-              <Button onClick={() => this.handleClick(article)}><Link to='./post'>阅读全文</Link></Button>
+              <Button onClick={() => this.handleClick(article)}><Link to={url}>阅读全文</Link></Button>
               <br/>
               <br/>
               <br/>
