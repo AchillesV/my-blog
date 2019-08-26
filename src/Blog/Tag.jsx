@@ -11,7 +11,7 @@ class Tag extends React.Component {
   
         <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
           <h2><Icon type='tag'/>&nbsp;标签</h2>
-          <p>目前共计 {tagData.length+1} 个标签</p>
+          <p>目前共计 {tagData.length} 个标签</p>
           <br/>
           <div style={{textAlign: 'center', marginLeft: '30px'}}>
             {

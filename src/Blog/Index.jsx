@@ -24,7 +24,7 @@ class Index extends React.Component {
           const url = 'post/' + article.id;
           return (
             <div key={key}>
-              <h3><Link to={url}>{article.title}</Link></h3>
+              <h3><Link style={{color: '#555555'}} to={url}>{article.title}</Link></h3>
               <p style={{fontWeight: "lighter"}}>发表于 {article.time} 分类于 {article.category}</p>
               <p style={{ textAlign: 'left' }}>{article.content.length > 50 ? `${article.content.substring(0,150)}...` : article.content}</p>
               <Button onClick={() => this.handleClick(article)}><Link to={url}>阅读全文</Link></Button>

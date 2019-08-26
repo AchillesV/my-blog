@@ -1,26 +1,51 @@
 import React from 'react';
-import { Tag, Divider } from 'antd';
+import { Tag, Divider, Icon, Tooltip } from 'antd';
+import wechat from './../assets/wechat.jpg'
 
 
 class Profile extends React.Component {
+  wechat = () => {
+    return (
+      <img style={{width: '120px', }} src={wechat} alt='wechat' />
+    )
+  }
   render(){
     return (
       <div>
-        <div style={{ margin: '20px 90px 20px 90px', textAlign: 'center'}}>
-          <img src={this.props.logo} alt='logo' style={{ width: '60px', borderRadius: '50%' }} />
-          <span>个人简介</span>
+        <div style={{textAlign: 'center', marginBottom: '10px'}}>
+          <img src={this.props.logo} alt='logo' style={{ margin: '20px 90px 10px 90px', width: '60px', borderRadius: '50%' }} />
+          <br/>
+          <span >wang.hai.tao</span>
         </div>
-        <div style={{textAlign: 'center', display: 'flex'}}>
-          <span>9<br/>文章</span>
-          <Divider type='vertical' />
-          <span>9<br/>分类</span>
-          <Divider type='vertical' />
-          <span>9<br/>标签</span>
+        <div style={{textAlign: 'center', display: 'flex', justifyContent: 'space-around'}}>
+          <span>4<br/>文章</span>
+          
+          <span>4<br/>分类</span>
+          
+          <span>8<br/>标签</span>
         </div>
         <br />
-        <Tag color="magenta">magenta</Tag>
-        <Tag color="red">red</Tag>
-        <Tag color="volcano">volcano</Tag>
+        <div style={{margin: '0 20px 10px 40px'}}>
+          <Tag color="#f50">PC</Tag>
+          <Tag color="#2db7f5">移动端</Tag>
+          <Tag color="#87d068">小程序</Tag>
+          
+        </div>
+        <div style={{width: '200px', margin: '30px 26px 30px 26px'}}>
+          <div style={{display: 'flex', justifyContent: 'space-around'}}>
+            <div><Tooltip placement='top' title={this.wechat}><Icon type='wechat'/>&nbsp;微信</Tooltip></div>
+            <div><a style={{color: 'black'}} href='https://github.com/AchillesV'><Icon type='github'/>&nbsp;GitHub</a></div> 
+          </div>
+          <br/>
+          <div style={{display: 'flex', justifyContent: 'space-around', }}>
+            <div><a style={{color: 'black'}} href='https://www.zhihu.com/people'><Icon type='global'/>&nbsp;知乎</a></div> 
+            <div><a style={{color: 'black'}} href='https://weibo.com'><Icon type='weibo'/>&nbsp;微博</a></div> 
+          </div>
+        </div>
+
+
+
+
       </div>
     )
   }
