@@ -5,6 +5,9 @@ import { Menu, Icon, Layout } from 'antd';
 import store from './Store';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import routes from './Router';
+import Profile from './Blog/Profile';
+import logo from './assets/logo.jpg'
+
 
 
 const { Content, Footer } = Layout;
@@ -15,11 +18,23 @@ const { Content, Footer } = Layout;
 
 class App extends React.Component{
 
-  handleClick = (e) => {
-    console.log(e.key)
+  state={
+    currentPage: ''
   }
 
-  render() {    
+
+  handleClick = (e) => {
+    console.log(e.key)
+    console.log(store)
+    this.setState({
+      currentPage: e.key
+    })
+
+
+  }
+
+  render() { 
+    const { currentPage } = this.state;
     return (      
       <Provider store={store}>
         <Router>
@@ -34,14 +49,17 @@ class App extends React.Component{
               <Menu
                 onClick={this.handleClick}
                 style={{color: 'black', paddingTop: 20, paddingBottom: 20}}
-                defaultSelectedKeys={['index']}
+                defaultSelectedKeys={[currentPage]}
                 mode="inline"
               >
 
-                <Menu.Item key='index'><Icon type='home' />首页<Link to='./' /></Menu.Item>
-                <Menu.Item key='category'><Icon type='appstore' />分类<Link to='./category' /></Menu.Item>
-                <Menu.Item key='tag'><Icon type='tag' />标签<Link to='./tag'/></Menu.Item>
+                <Menu.Item key='index'><Icon type='home' />首页<Link to='' /></Menu.Item>
+                <Menu.Item key='category'><Icon type='appstore' />分类<Link to='../category' /></Menu.Item>
+                <Menu.Item key='tag'><Icon type='tag' />标签<Link to='../tag'/></Menu.Item>
               </Menu>  
+            </div>
+            <div className='profile'>
+              <Profile logo={logo} />
             </div>
             <Layout style={{ marginLeft: 409 }}>
               {/* <Header style={{ background: '#fff', padding: 0 }} /> */}
@@ -54,14 +72,16 @@ class App extends React.Component{
                           exact
                           key={key} 
                           path={route.path} 
-                          render={props => <route.component {...props} />} 
+                          component={route.component}
+                          /* render={props => <route.component {...props} />} */ 
                         />)
                     } else {
                       return (
                         <Route 
                           key={key} 
                           path={route.path} 
-                          render={props => <route.component {...props} />} 
+                          component={route.component}
+                          /* render={props => <route.component {...props} />}  */
                         />
                       )
                     }

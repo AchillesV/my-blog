@@ -10,9 +10,14 @@ let routes = [
     exact: true, 
     component: Index,
   },
-  {path: '/category', component: Category},
+  {
+    path: '/category', 
+    component: Category,
+  },
+
   {path: '/detail', component: Detail},
   {path: '/tag', component: Tag},
+
   {path: '/post', component: Post}
 ]
 

@@ -17,3 +17,13 @@
   height: 115px;
 }
 
+
+.profile {
+  width: 240px;
+  margin-left: 168px;
+  margin-top: 350px;
+  color: white;
+  background-color: rgb(19, 18, 18);
+  overflow: auto;
+  position: fixed;
+}

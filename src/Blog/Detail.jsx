@@ -56,18 +56,18 @@ class Detail extends React.Component {
   }
 
   render() {
-    const { detail } = this.state;
+    const { detail } = this.props;
     
     return(
         <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
-          <h2><Icon type='appstore'/>&nbsp;JS</h2>
+          <h2><Icon type='bars'/>&nbsp;JS</h2>
           <p>目前共计 {detail.count} 篇文章</p>
           <div style={{textAlign: 'left', marginLeft: '30px'}}>
             <ul>
               {
                 detail.content.map((item,key) => {
                   const url = 'http://localhost:3000/post/' + item.id;
-                  return (<li key={key}><a href={url}>{item.time}|{item.article}</a></li>)
+                  return (<li style={{ listStyle: 'none', borderBottom: '1px dashed #666666', marginBottom: '10px'}} key={key}><a target='_blank' href={url}>{item.time} | {item.article}</a></li>)
                 })
               }
             </ul>
@@ -105,7 +105,7 @@ class Detail extends React.Component {
 
 const mapStatetoProps = (state) => {
   return {
-    categories: state.categoryData
+    detail: state.detailData
   }
 }
     

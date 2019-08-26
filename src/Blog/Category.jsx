@@ -14,12 +14,13 @@ class Category extends React.Component {
         <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
           <h2><Icon type='appstore'/>&nbsp;分类</h2>
           <p>目前共计 {categories.length} 个分类</p>
+          <br/>
           <div style={{textAlign: 'left', marginLeft: '30px'}}>
             <ul>
               {
                 categories.map((item,key) => {
-                const url = './detail/' + item.category;
-                return  <li key={key}><Link to={url}>{item.category}（{item.count}）</Link></li>
+                // const url = 'detail/' + item.category;
+                return  <li style={{marginBottom: '5px'}} key={key}><Link to={`detail/${item.category}`}>{item.category}（{item.count}）</Link></li>
                 })
               }
             </ul>

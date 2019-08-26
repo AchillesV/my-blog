@@ -8,6 +8,7 @@ class Post extends React.Component {
   
   render() {
     const {article} = this.props;
+    document.documentElement.scrollTop = document.body.scrollTop = 0;
     return(
           <div style={{ padding: 24, background: '#fff', textAlign: 'left' }}>
 

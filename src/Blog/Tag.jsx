@@ -1,6 +1,7 @@
 import React from 'react';
 import { Icon } from 'antd';
 import { connect } from 'react-redux';
+import { Link } from "react-router-dom";
 
 
 class Tag extends React.Component {
@@ -15,8 +16,13 @@ class Tag extends React.Component {
           <div style={{textAlign: 'center', marginLeft: '30px'}}>
             {
               tagData.map((item,key) => {
+                const url = './detail/' + item.tag;
                 return (
-                    <span style={{fontSize: `${item.count}px`, borderBottom: '1px solid #900b09', marginLeft: '20px'}}>{item.tag}</span>
+                    <span 
+                      key={key} 
+                      style={{fontSize: `${item.count}px`, borderBottom: '1px solid #900b09', marginLeft: '20px'}}>
+                      <Link to={url}>{item.tag}</Link>
+                    </span>
                 )
               }
                 

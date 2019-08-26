@@ -83,9 +83,53 @@ const defaultState = {
       tag: '其他',
       count: '18'
     },
-
-
-  ]
+  ],
+  detailData: {
+    title: 'JS',
+    count: '8',
+    content: [
+      {
+        id: '1',
+        article: '你不知道的JS',
+        time: '8/16'
+      },
+      {
+        id: '2',
+        article: '前端代码规范 — JavaScript 风格指南',
+        time: '8/18'
+      },
+      {
+        id: '3',
+        article: '深入 JavaScript 设计模式，从此有了优化代码的理论依据',
+        time: '8/18'
+      },
+      {
+        id: '4',  
+        article: '写给前端工程师的Flutter教程',
+        time: '8/16'
+      },
+      {
+        id: '5',  
+        article: '如何理解Virtual DOM？',
+        time: '8/18'
+      },
+      {
+        id: '6',
+        article: 'JS基础-函数、对象和原型、原型链的关系',
+        time: '8/18'
+      },
+      {
+        id: '7',
+        article: '基于 HTML5 Canvas 的拓扑组件开发',
+        time: '8/18'
+      },
+      {
+        id: '8',
+        article: 'JavaScript中的位操作符',
+        time: '8/18'
+      },
+    ]
+  }
 }
 
 export default (state = defaultState, action) => {

@@ -21,7 +21,7 @@ class Index extends React.Component {
     return(
       <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
         {articles.map((article,key) => {
-          const url = './post/' + article.id;
+          const url = 'post/' + article.id;
           return (
             <div key={key}>
               <h3><Link to={url}>{article.title}</Link></h3>
