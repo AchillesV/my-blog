@@ -1,17 +1,20 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
+
 
 
 
 class Post extends React.Component {
   
   render() {
+
+    
     const {article} = this.props;
+
+    
     document.documentElement.scrollTop = document.body.scrollTop = 0;
     return(
-          <div style={{ padding: 24, background: '#fff', textAlign: 'left' }}>
-
+        <div style={{ padding: 24, background: '#fff', textAlign: 'left' }}>
           <h3>| {article[0].title}</h3>
           <p style={{fontWeight: "lighter"}}>发表于 {article[0].time} 分类于 {article[0].category}</p>
           <p>{article[0].content}</p>
@@ -109,6 +112,7 @@ class Post extends React.Component {
           ...
           <br />
           content
+          
         </div>
 
     )

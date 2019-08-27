@@ -1,6 +1,7 @@
 import React from 'react';
 import { Tag, Divider, Icon, Tooltip } from 'antd';
 import wechat from './../assets/wechat.jpg'
+import { Link } from 'react-router-dom'
 
 
 class Profile extends React.Component {
@@ -18,11 +19,11 @@ class Profile extends React.Component {
           <span >wang.hai.tao</span>
         </div>
         <div style={{textAlign: 'center', display: 'flex', justifyContent: 'space-around'}}>
-          <span>4<br/>文章</span>
+          <Link style={{color: '#555555'}} to='/'><span>4<br/>文章</span></Link>
           
-          <span>4<br/>分类</span>
+          <Link style={{color: '#555555'}} to='../category'><span>4<br/>分类</span></Link>
           
-          <span>8<br/>标签</span>
+          <Link style={{color: '#555555'}} to='../tag'><span>8<br/>标签</span></Link>
         </div>
         <br />
         <div style={{margin: '0 20px 10px 40px'}}>
