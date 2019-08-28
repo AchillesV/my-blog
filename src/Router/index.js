@@ -1,7 +1,7 @@
 import Index from './../Blog/Index';
 import Category from './../Blog/Category';
 import Tag from './../Blog/Tag';
-import Post from './../Blog/Post';
+import Post from './../Blog/Articles/Post';
 import Detail from './../Blog/Detail';
 
 let routes = [
