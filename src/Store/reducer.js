@@ -129,7 +129,8 @@ const defaultState = {
         time: '8/18'
       },
     ]
-  }
+  },
+  comments: {}
 }
 
 export default (state = defaultState, action) => {
@@ -150,5 +151,16 @@ export default (state = defaultState, action) => {
     newState.tagData = state.tagData
     return newState
   }
+
+  if(action.type === constants.COMMENT_DATA) {
+    console.log(action.payload)
+    const comments = action.payload
+    const newState = JSON.parse(JSON.stringify(state))
+    newState.comments = action.payload
+    console.log(newState)
+    
+    return newState
+  }
+
   return state
 }

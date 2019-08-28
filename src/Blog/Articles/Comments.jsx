@@ -2,6 +2,7 @@ import React from 'react';
 import { Comment, Icon, Tooltip, Avatar } from 'antd';
 import moment from 'moment';
 
+
 class Comments extends React.Component {
   state = {
     likes: 0,
@@ -80,4 +81,6 @@ class Comments extends React.Component {
   }
 }
 
-export default Comments;
+
+
+export default Comments;;

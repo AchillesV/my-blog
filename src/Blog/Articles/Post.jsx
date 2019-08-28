@@ -2,49 +2,64 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Comments from './Comments';
 import { Divider, Input, Icon, Button} from 'antd';
+import { getCommentData } from './../../Store/actionCreators';
 
 const { TextArea } = Input;
 
 class Post extends React.Component {
   
   state = {
-    comment: '要把所有的夜归还给星河，把所有的春光归还给疏疏篱落，把所有的慵慵沉迷与不前，归还给过去的我。明日之我，胸中有丘壑，立马振山河。'
+    comment: '',
+    visibleComment: false
   }
 
-  handleSubmit = (e) => {
+  componentDidMount(){
     
-    console.log(e)
+    document.documentElement.scrollTop = document.body.scrollTop = 0;
+  }
+  handleSubmit = (payload) => {
+    const {comment} = this.state;
+    this.setState({
+      visibleComment: comment ? true : false,
+    },() => {
+      this.props.reqCommentData(payload)
+    })
+    console.log(payload)
+    
   }
 
 
   render() {
 
     
-    const {article} = this.props;
-    const {comment} = this.state;
+    const {article, comments} = this.props;
+    const {comment, visibleComment} = this.state;
+    console.log(this.props.comments)
 
     
-    document.documentElement.scrollTop = document.body.scrollTop = 0;
+    
     return(
         <div style={{ padding: 24, background: '#fff', textAlign: 'left' }}>
           <h3>| {article[0].title}</h3>
           <p style={{fontWeight: "lighter"}}>发表于 {article[0].time} 分类于 {article[0].category}</p>
           <p>{article[0].content}</p>
           <br/>        
-          <Divider dashed orientation="left" ><Icon type='scissor' /></Divider>
+          {/* <Divider dashed orientation="left" ><Icon type='scissor' /></Divider>
+          <br /> */}
+          <Divider ><span style={{fontSzie: '22px'}}>评论</span></Divider>
           <br />
           <div>
           <TextArea  onChange={e => this.setState({comment: e.target.value})} />
             <Button
               style={{ marginTop: '10px'}} 
               type="primary"
-              onClick={() => this.handleSubmit({comment})}
+              onClick={() => this.handleSubmit({commentes:comment})}
               >
               提交
             </Button>
           </div>
           <br />
-          <Comments />     
+          {visibleComment ? <Comments msg={comments.commentes} /> : null}
         </div>
 
     )
@@ -53,9 +68,18 @@ class Post extends React.Component {
 
 const mapStatetoProps = (state) => {
     return {
-      article: state.homeData
+      article: state.homeData,
+      comments: state.comments
     }
-  }
+}
+
+const mapDispatchtoProps = (dispatch) => {
+    return {
+      reqCommentData(payload) {
+        const action = getCommentData(payload)
+        dispatch(action)
+      }
+    }
+}
   
-  
-  export default connect(mapStatetoProps, null)(Post);
+export default connect(mapStatetoProps, mapDispatchtoProps)(Post);

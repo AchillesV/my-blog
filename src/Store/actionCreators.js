@@ -15,3 +15,8 @@ export const getTagData = () => ({
   type: constants.TAG_DATA,
 
 })
+
+export const getCommentData = (payload) => ({
+  type: constants.COMMENT_DATA,
+  payload
+  })
