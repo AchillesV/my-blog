@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Comments from './Comments';
-import { Divider, Input, Icon, Button} from 'antd';
+import { Divider, Input, Button} from 'antd';
 import { getCommentData } from './../../Store/actionCreators';
 
 const { TextArea } = Input;
@@ -10,7 +10,8 @@ class Post extends React.Component {
   
   state = {
     comment: '',
-    visibleComment: false
+    visibleComment: false,
+    visibleButton: false,
   }
 
   componentDidMount(){
@@ -28,12 +29,17 @@ class Post extends React.Component {
     
   }
 
+  isInputed = () => {
+    const {comment} = this.state;
+    comment ? this.setState({visibleButton: true}) :  this.setState({visibleButton: false})
+  }
+
 
   render() {
 
     
     const {article, comments} = this.props;
-    const {comment, visibleComment} = this.state;
+    const {comment, visibleComment, visibleButton} = this.state;
     console.log(this.props.comments)
 
     
@@ -46,12 +52,19 @@ class Post extends React.Component {
           <br/>        
           {/* <Divider dashed orientation="left" ><Icon type='scissor' /></Divider>
           <br /> */}
-          <Divider ><span style={{fontSzie: '22px'}}>评论</span></Divider>
+          <div style={{width: '500px', margin: '0 auto'}}> <Divider><span style={{fontSzie: '22px'}}>评论</span></Divider> </div>
           <br />
           <div>
-          <TextArea  onChange={e => this.setState({comment: e.target.value})} />
+          <TextArea 
+            placeholder='请输入评论...' 
+            onChange={e => this.setState({comment: e.target.value})} 
+            onFocus={() => this.setState({visibleButton: true})}
+            onBlur={() => this.isInputed()}
+            onPressEnter={() => this.handleSubmit({commentes:comment})}
+          />
             <Button
-              style={{ marginTop: '10px'}} 
+              
+              style={{ marginTop: '10px', display: visibleButton ? 'block': 'none' }} 
               type="primary"
               onClick={() => this.handleSubmit({commentes:comment})}
               >
