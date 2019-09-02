@@ -28,7 +28,7 @@ class Comments extends React.Component {
 
   render() {
     const { likes, dislikes, action } = this.state;
-    const { msg } = this.props
+    const { comment, userName } = this.props
     const actions = [
       <span key="comment-basic-like">
         <Tooltip title="Like">
@@ -52,23 +52,23 @@ class Comments extends React.Component {
       </span>,
       <span key="comment-basic-reply-to">回复</span>,
     ];
-
+    const logo = userName ? userName.slice(0,1): '';
     return (
       <Comment
         actions={actions}
-        author={<a>Wang.hai.tao</a>}
+        author={<a>{userName}</a>}
         avatar={
           <Avatar
             style={{ backgroundColor: '#7265e6', verticalAlign: 'middle' }} size="large"
             
             alt="Lucy"
           >
-            WHT
+            {logo}
           </Avatar>
         }
         content={
           <p>
-            {msg}
+            {comment}
           </p>
         }
         datetime={

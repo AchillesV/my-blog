@@ -10,6 +10,7 @@ class Post extends React.Component {
   
   state = {
     comment: '',
+    userName: '',
     visibleComment: false,
     visibleButton: false,
   }
@@ -30,16 +31,16 @@ class Post extends React.Component {
   }
 
   isInputed = () => {
-    const {comment} = this.state;
-    comment ? this.setState({visibleButton: true}) :  this.setState({visibleButton: false})
+    const {comment, userName } = this.state;
+    comment || userName ? this.setState({visibleButton: true}) :  this.setState({visibleButton: false})
   }
 
 
   render() {
 
     
-    const {article, comments} = this.props;
-    const {comment, visibleComment, visibleButton} = this.state;
+    const {article, commentInfos} = this.props;
+    const {comment, userName, visibleComment, visibleButton} = this.state;
     console.log(this.props.comments)
 
     
@@ -55,24 +56,39 @@ class Post extends React.Component {
           <div style={{width: '500px', margin: '0 auto'}}> <Divider><span style={{fontSzie: '22px'}}>评论</span></Divider> </div>
           <br />
           <div>
+
+            <Input 
+              style={{ marginBottom: '10px', border: 'none', borderLeft: '3px solid #D9D9D9',}} 
+              placeholder='请输入姓名...'
+              onChange={e => this.setState({userName: e.target.value})} 
+              onFocus={() => this.setState({visibleButton: true})}
+              onBlur={() => this.isInputed()}
+            />
+
+
           <TextArea 
+            style={{ border: 'none', borderLeft: '3px solid #D9D9D9'}}
             placeholder='请输入评论...' 
             onChange={e => this.setState({comment: e.target.value})} 
             onFocus={() => this.setState({visibleButton: true})}
             onBlur={() => this.isInputed()}
             onPressEnter={() => this.handleSubmit({commentes:comment})}
           />
-            <Button
-              
+            <Button              
               style={{ marginTop: '10px', display: visibleButton ? 'block': 'none' }} 
               type="primary"
-              onClick={() => this.handleSubmit({commentes:comment})}
+              onClick={() => this.handleSubmit({commentes:comment, userNames: userName})}
               >
               提交
             </Button>
           </div>
           <br />
-          {visibleComment ? <Comments msg={comments.commentes} /> : null}
+          {visibleComment ? 
+            <Comments 
+              comment={commentInfos.commentes} 
+              userName={commentInfos.userNames}
+            /> 
+          : null}
         </div>
 
     )
@@ -82,7 +98,7 @@ class Post extends React.Component {
 const mapStatetoProps = (state) => {
     return {
       article: state.homeData,
-      comments: state.comments
+      commentInfos: state.comments
     }
 }
 

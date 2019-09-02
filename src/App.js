@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import {Provider} from 'react-redux'
-import { Menu, Icon, Layout } from 'antd';
+import { Menu, Icon, Layout, Tooltip } from 'antd';
 import store from './Store';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import routes from './Router';
@@ -19,7 +19,17 @@ const { Content, Footer } = Layout;
 class App extends React.Component{
 
   state={
-    currentPage: ''
+    currentPage: '',
+    toTop: '',
+  }
+
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  handleScroll = () => {
+    this.setState({toTop: window.scrollY})
   }
 
 
@@ -34,7 +44,8 @@ class App extends React.Component{
   }
 
   render() { 
-    const { currentPage } = this.state;
+    const { currentPage, toTop } = this.state;
+    console.log(document.body.scrollTop)
     return (      
       <Provider store={store}>
         <Router>
@@ -56,6 +67,7 @@ class App extends React.Component{
                 <Menu.Item key='index'><Icon type='home' />首页<Link to='' /></Menu.Item>
                 <Menu.Item key='category'><Icon type='appstore' />分类<Link to='../category' /></Menu.Item>
                 <Menu.Item key='tag'><Icon type='tag' />标签<Link to='../tag'/></Menu.Item>
+                
               </Menu>  
             </div>
             <div className='profile'>
@@ -89,7 +101,17 @@ class App extends React.Component{
                                   
                 }
               </Content>
-              <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+
+              <div 
+                style={{visibility: toTop ? 'visible' : 'hidden' }}
+                className = 'toTop'                
+                onClick = {() => document.documentElement.scrollTop = document.body.scrollTop = 0}
+              >
+                <Tooltip title="返回顶部"><Icon type='up' style={{width: '25px', height: '25px'}}/></Tooltip>
+              </div>
+
+
+              <Footer style={{ textAlign: 'center', width: '790px' }}> ©2019 ❤ WHT</Footer>
             </Layout>
           </Layout>
         </Router>
