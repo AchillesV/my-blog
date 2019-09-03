@@ -41,7 +41,8 @@ class Post extends React.Component {
     
     const {article, commentInfos} = this.props;
     const {comment, userName, visibleComment, visibleButton} = this.state;
-    console.log(this.props.comments)
+    console.log(this.props.article[0].comments)
+
 
     
     
@@ -89,6 +90,9 @@ class Post extends React.Component {
               userName={commentInfos.userNames}
             /> 
           : null}
+          {
+            article[0].comments.map((comment,key)=> <Comments key={key} comment={comment.comment} userName={comment.userName} />)
+          }
 
         </div>
 
