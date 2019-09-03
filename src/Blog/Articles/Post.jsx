@@ -41,8 +41,12 @@ class Post extends React.Component {
     
     const {article, commentInfos} = this.props;
     const {comment, userName, visibleComment, visibleButton} = this.state;
+<<<<<<< HEAD
     console.log(this.props.article[0].comments)
 
+=======
+    console.log(this.props.comments)
+>>>>>>> 4725f5a34d16f17abd9efdc9f77ac2ffc9fa4559
 
     
     
@@ -90,10 +94,13 @@ class Post extends React.Component {
               userName={commentInfos.userNames}
             /> 
           : null}
+<<<<<<< HEAD
           {
             article[0].comments.map((comment,key)=> <Comments key={key} comment={comment.comment} userName={comment.userName} />)
           }
 
+=======
+>>>>>>> 4725f5a34d16f17abd9efdc9f77ac2ffc9fa4559
         </div>
 
     )
