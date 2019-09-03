@@ -36,24 +36,32 @@ class Post extends React.Component {
   }
 
 
+  createNode = (txt) => {
+    const template = `<div class='child'>${txt}</div>`;
+    let tempNode = document.createElement('div');
+    tempNode.innerHTML = template;
+    return tempNode.firstChild;
+  }
+
+
   render() {
 
     
     const {article, commentInfos} = this.props;
     const {comment, userName, visibleComment, visibleButton} = this.state;
-<<<<<<< HEAD
     console.log(this.props.article[0].comments)
 
-=======
-    console.log(this.props.comments)
->>>>>>> 4725f5a34d16f17abd9efdc9f77ac2ffc9fa4559
 
     
     
     return(
         <div style={{ padding: 24, background: '#fff', textAlign: 'left' }}>
           <h3>| {article[0].title}</h3>
-          <p style={{fontWeight: "lighter"}}>发表于 {article[0].time} 分类于 {article[0].category}</p>
+          <div style={{fontWeight: "lighter"}}>
+            发表于 {article[0].time} 
+            <Divider type='vertical' />
+            分类于 {article[0].category}
+          </div>
           <p>{article[0].content}</p>
           <br/>        
           {/* <Divider dashed orientation="left" ><Icon type='scissor' /></Divider>
@@ -94,13 +102,13 @@ class Post extends React.Component {
               userName={commentInfos.userNames}
             /> 
           : null}
-<<<<<<< HEAD
           {
-            article[0].comments.map((comment,key)=> <Comments key={key} comment={comment.comment} userName={comment.userName} />)
-          }
+            article[0].comments.map((comment,key)=> 
+            <div key={key}>
+              <Comments comment={comment.comment} userName={comment.userName} /> 
+            </div>
+          )}
 
-=======
->>>>>>> 4725f5a34d16f17abd9efdc9f77ac2ffc9fa4559
         </div>
 
     )
