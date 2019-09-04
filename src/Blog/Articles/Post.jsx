@@ -4,6 +4,7 @@ import Comments from './Comments';
 import { Divider, Input, Button} from 'antd';
 import { getCommentData } from './../../Store/actionCreators';
 
+
 const { TextArea } = Input;
 
 class Post extends React.Component {
@@ -36,12 +37,6 @@ class Post extends React.Component {
   }
 
 
-  createNode = (txt) => {
-    const template = `<div class='child'>${txt}</div>`;
-    let tempNode = document.createElement('div');
-    tempNode.innerHTML = template;
-    return tempNode.firstChild;
-  }
 
 
   render() {
@@ -52,22 +47,27 @@ class Post extends React.Component {
     console.log(this.props.article[0].comments)
 
 
-    
+
+    const post = article[0].content.split(' ')
+    console.log(post)
     
     return(
         <div style={{ padding: 24, background: '#fff', textAlign: 'left' }}>
-          <h3>| {article[0].title}</h3>
-          <div style={{fontWeight: "lighter"}}>
+          <h3 style={{borderLeft: '3px solid #808080', color: 'gray', fontWeight: 'bolder' }}> &nbsp;&nbsp;{article[0].title}</h3>
+          <div style={{fontWeight: "lighter", marginBottom: '5px'}}>
             发表于 {article[0].time} 
             <Divider type='vertical' />
             分类于 {article[0].category}
           </div>
-          <p>{article[0].content}</p>
+          <br/>
+          <div style={{fontSize: '15px', fontFamily:"微软雅黑"}}>
+            {post.map((p,key) => <div key={key}><div >{p.length > 40 ? p : <strong>{p}</strong>}</div> <br/></div>)}
+          </div>
           <br/>        
           {/* <Divider dashed orientation="left" ><Icon type='scissor' /></Divider>
           <br /> */}
           <div style={{width: '500px', margin: '0 auto'}}> <Divider><span style={{fontSzie: '22px'}}>评论</span></Divider> </div>
-          <br />
+          <br/>
           <div>
 
             <Input 

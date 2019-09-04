@@ -1,11 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Button, Divider } from 'antd';
+import { Button, Divider, Input } from 'antd';
 import { Link } from "react-router-dom";
+
+
 
 class Index extends React.Component {
    state = {
     articlesId: '',
+
+  }
+
+  componentDidMount() {
+    document.documentElement.scrollTop = document.body.scrollTop = 0;
 
   }
 
@@ -18,8 +25,13 @@ class Index extends React.Component {
   render() {
     const { articles } = this.props;
     console.log(this.state.articlesId);
+
+
+
+
     return(
       <div style={{ padding: 24, background: '#fff', textAlign: 'center' }}>
+
         {articles.map((article,key) => {
           const url = 'post/' + article.id;
           return (
@@ -30,6 +42,7 @@ class Index extends React.Component {
                 <Divider type='vertical' />
                 分类于 {article.category}
               </div>
+              <br />
               <p style={{ textAlign: 'left' }}>{article.content.length > 50 ? `${article.content.substring(0,150)}...` : article.content}</p>
               <Button onClick={() => this.handleClick(article)}><Link to={url}>阅读全文</Link></Button>
               <Divider dashed />

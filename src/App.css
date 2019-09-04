@@ -14,7 +14,7 @@
   padding-top: 20px;
   text-align: center;
   background-color: rgb(19, 18, 18);
-  height: 115px;
+  height: 135px;
 }
 
 
@@ -45,3 +45,15 @@
   color: white;
 }
 
+.ant-input-affix-wrapper .ant-input {
+  background-color: black;
+  border-radius: 0px;
+  border: 1px solid #ffffff;
+  color: white;
+  height: 26px;
+  
+}
+
+.ant-input-suffix svg {
+  color: white;
+}

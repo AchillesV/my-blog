@@ -1,13 +1,14 @@
 import React from 'react';
 import './App.css';
 import {Provider} from 'react-redux'
-import { Menu, Icon, Layout, Tooltip } from 'antd';
+import { Menu, Icon, Layout, Tooltip, Input } from 'antd';
 import store from './Store';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import routes from './Router';
 import Profile from './Blog/Profile';
 import logo from './assets/logo.jpg'
 
+const { Search } = Input;
 
 
 const { Content, Footer } = Layout;
@@ -18,14 +19,27 @@ const { Content, Footer } = Layout;
 
 class App extends React.Component{
 
-  state={
-    currentPage: '',
-    toTop: '',
+  constructor(props){
+    super(props)
+    this.state={
+      currentPage: '',
+      toTop: '',
+      searchKeys: '',
+      visibleSearch: true,
+    }
   }
+
+
 
 
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll);
+    window.location.href.length < 23 ? this.setState({visibleSearch: true}) : this.setState({visibleSearch: false}) 
+
+  }
+
+  fetchBlogLists = () => {
+
   }
 
   handleScroll = () => {
@@ -34,18 +48,26 @@ class App extends React.Component{
 
 
   handleClick = (e) => {
+    window.location.href.length < 23 ? this.setState({visibleSearch: true}) : this.setState({visibleSearch: false}) 
     console.log(e.key)
     console.log(store)
     this.setState({
       currentPage: e.key
     })
+  }
 
-
+  handleSearch = (payload) => {
+    
+    this.setState({searchKeys: payload}, ()=>{
+      const {searchKeys} = this.state;
+      console.log(searchKeys)
+    })
   }
 
   render() { 
-    const { currentPage, toTop } = this.state;
+    const { currentPage, toTop,visibleSearch } = this.state;
     console.log(document.body.scrollTop)
+
     return (      
       <Provider store={store}>
         <Router>
@@ -53,9 +75,21 @@ class App extends React.Component{
             {/* 左侧导航栏 */}
             <div className='sider'> 
               <div className='sider-top'>
+                
                 <p>WHT | Blog</p>
                 <p style={{fontWeight: 'lighter'}}>Welcome!</p>
+                {visibleSearch ? 
+                  <Search
+                    placeholder="搜索"
+                    onSearch={value => this.handleSearch(value)}
+                    style={{ width: 180 }}                  
+                  />
+                  
+                : null}
+
               </div> 
+
+
               {/* 导航组件 */}          
               <Menu
                 onClick={this.handleClick}

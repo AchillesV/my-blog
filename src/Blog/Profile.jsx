@@ -39,7 +39,7 @@ class Profile extends React.Component {
           </div>
           <br/>
           <div style={{display: 'flex', justifyContent: 'space-around', }}>
-            <div><a style={{color: 'black'}} href='https://www.zhihu.com/people'><Icon type='global'/>&nbsp;知乎</a></div> 
+            <div><a style={{color: 'black'}} href='https://www.zhihu.com/'><Icon type='global'/>&nbsp;知乎</a></div> 
             <div><a style={{color: 'black'}} href='https://weibo.com'><Icon type='weibo'/>&nbsp;微博</a></div> 
           </div>
         </div>
