@@ -144,7 +144,6 @@ class App extends React.Component{
                 <Tooltip title="返回顶部"><Icon type='up' style={{width: '25px', height: '25px'}}/></Tooltip>
               </div>
 
-
               <Footer style={{ textAlign: 'center', width: '790px' }}> ©2019 ❤ WHT</Footer>
             </Layout>
           </Layout>

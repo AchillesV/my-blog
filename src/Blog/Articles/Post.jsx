@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Comments from './Comments';
-import { Divider, Input, Button} from 'antd';
+import { Divider, Input, Button, Select} from 'antd';
 import { getCommentData } from './../../Store/actionCreators';
 
 
 const { TextArea } = Input;
+const { Option } = Select;
 
 class Post extends React.Component {
   
@@ -14,6 +15,7 @@ class Post extends React.Component {
     userName: '',
     visibleComment: false,
     visibleButton: false,
+    rate: 0
   }
 
   componentDidMount(){
@@ -37,13 +39,20 @@ class Post extends React.Component {
   }
 
 
+  handleChange = (value) => {
+    console.log(`selected ${value}`);
+    const {rate} = this.state;
+    this.setState({
+      rate: value
+    })
+  }
 
 
   render() {
 
     
     const {article, commentInfos} = this.props;
-    const {comment, userName, visibleComment, visibleButton} = this.state;
+    const {comment, userName, visibleComment, visibleButton, rate} = this.state;
     console.log(this.props.article[0].comments)
 
 
@@ -70,6 +79,17 @@ class Post extends React.Component {
           <br/>
           <div>
 
+            <div style={{ paddingLeft: '10px', marginBottom: '10px', border: 'none', borderLeft: '3px solid #D9D9D9', fontSize: 18, borderRadius: 4}}>
+              评分：{"★★★★★☆☆☆☆☆".slice(5 - rate, 10 - rate)}
+              <Select defaultValue="" style={{ display:!visibleButton ? 'inline-block': 'none',marginLeft:400, width: 63}} size='small' onChange={this.handleChange}>
+                <Option value="1">极差</Option>
+                <Option value="2">较差</Option>
+                <Option value="3">一般</Option>
+                <Option value="4">不错</Option>
+                <Option value="5">很棒</Option>
+              </Select>
+            </div>
+
             <Input 
               style={{ marginBottom: '10px', border: 'none', borderLeft: '3px solid #D9D9D9',}} 
               placeholder='请输入姓名...'
@@ -87,6 +107,7 @@ class Post extends React.Component {
             onBlur={() => this.isInputed()}
             onPressEnter={() => this.handleSubmit({commentes:comment})}
           />
+          
             <Button              
               style={{ marginTop: '10px', display: visibleButton ? 'block': 'none' }} 
               type="primary"
